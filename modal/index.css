@@ -1,0 +1,89 @@
+@import url('../common/normalize.css');
+@import url('../common/common.css');
+.btn-info {
+  color: #fff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+  font-size: 1.6rem;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0 100px;
+  cursor: pointer;
+}
+.btn-info:focus, .btn-info:hover {
+  color: #fff;
+  background-color: #31b0d5;
+  border-color: #1b6d85;
+}
+h2 {
+  font-size: 2.4rem;
+  margin: 30px 100px;
+}
+.modal.in {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .5);
+}
+.fade {
+  opacity: 0;
+}
+.fade.in {
+  opacity: 1;
+  transition: opacity .3s linear;
+}
+.modal-dialog {
+  width: 30%;
+  margin: 0;
+  opacity: 0;
+}
+.in .modal-dialog {
+  margin: 3% auto;
+  opacity: 1;
+  transition: all .2s linear;
+}
+.modal-content {
+  background-color: #fff;
+  border: 1px solid #999;
+  border-radius: 6px;
+  outline: 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+}
+.modal-header {
+  padding: 10px 20px;
+  position: relative;
+}
+.modal-header h4 {
+  font-size: 1.8rem;
+}
+.close {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  top: 0;
+  right: 1px;
+  font-weight: 900;
+  color: #999;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+.modal-body {
+  background-color: #fff;
+  border: 1px solid #999;
+  border-left: 0px;
+  border-right: 0px;
+  padding: 30px 20px;
+}
+.btn-default {
+  float: right;
+  background-color: #fff;
+  border: 1px solid #999;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  padding: 5px 8px;
+  margin: 10px;
+  cursor: pointer;
+}
