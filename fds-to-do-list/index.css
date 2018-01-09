@@ -1,6 +1,13 @@
 @import url('../common/normalize.css');
 @import url('../common/common.css');
+.init-box.comp, .head-wrap.comp {
+  display: none;
+}
+.init-box {
+  display: block;
+}
 .head-wrap {
+  display: block;
   background-color: #f44336;
   padding: 30px 50px;
   color: white;
@@ -35,6 +42,7 @@
   box-sizing: border-box;
 }
 .list-wrap {
+  position: relative;
   width: 100%;
 }
 .list-wrap div:nth-child(odd) {
@@ -87,4 +95,14 @@ div.complete .btn-remove {
 .btn-remove:hover {
   color: #fff;
   background-color: #f44336;
+}
+.todo-list--loading::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  background: rgba(0, 0, 0, .5);
 }
