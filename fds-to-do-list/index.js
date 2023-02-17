@@ -2,8 +2,6 @@ const addButtonEl = document.querySelector('#add-button');
 const toDoInputEl = document.querySelector('#todo-input');
 const toDoDiv = document.querySelector('.list-wrap');
 const provider = new firebase.auth.GoogleAuthProvider();
-let path;
-// Initialize Firebase
 var config = {
   apiKey: "AIzaSyCNal18ye2Y7abPwj6lmMH0b25NcxRiT84",
   authDomain: "jamie-fds-todo-exercise.firebaseapp.com",
@@ -13,14 +11,20 @@ var config = {
   messagingSenderId: "138347820613"
 };
 firebase.initializeApp(config);
+const auth = firebase.auth();
+const db = firebase.database();
+let path;
+//내림차순으로 하기 위해 명시적으로 order의 숫자를 감소시킬 수 있다. order로 oderByChild를 해줄 수도 있고,
+//가져온 데이터를 그려주는 방법을 바꿔서 내림차순으로 보여줄 수 있다.
+let order = 1000000;
 
 addButtonEl.addEventListener('click', addBtnEvent);
 addButtonEl.addEventListener('keyDown', addBtnEvent);
 toDoInputEl.addEventListener('keyDown', addBtnEvent);
 
-firebase.auth().onAuthStateChanged(function(user) {
+auth.onAuthStateChanged(function(user) {
   if (user) {
-    path = `users/${firebase.auth().currentUser.uid}/todos`;
+    path = `users/${auth.currentUser.uid}/todos`;
     document.querySelector('.init-box').classList.toggle('comp');
     document.querySelector('.head-wrap').classList.toggle('comp');
     getTodos();
@@ -29,12 +33,13 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 //todo리스트 전체 가져오기
 async function getTodos() {
-  const result = await firebase.database().ref(path);
+  const result = await db.ref(path); //.orderByChild('order');
   result.once('value', snapshot => {
     const todos = snapshot.val();
     if (todos) {
       toDoDiv.innerHTML = '<h2 class="readable-hidden">to do list</h2>';
       const entries = Object.entries(todos);
+      // order = entries[entries.length - 1][1]['order'];
       for (let [name, value] of entries) {
         addTodo(name, value);
       }
@@ -44,7 +49,7 @@ async function getTodos() {
 
 //로그인처리
 document.querySelector('.btn-login').addEventListener('click', async e => {
-  await firebase.auth().signInWithPopup(provider);
+  await auth.signInWithPopup(provider);
 });
 
 //to do list 추가
@@ -58,7 +63,9 @@ async function addBtnEvent(e) {
     for (let item of todoTextArr) {
       if (item.length === 0) continue;
 
-      const result = await firebase.database().ref(path).push({
+      const result = await db.ref(path).push({
+        // order: --order,
+        order: order,
         title: item,
         complete: false
       });
@@ -90,13 +97,13 @@ function addTodo(id, obj) {
   if (obj.complete)
     newDiv.classList.add('complete');
   newDiv.appendChild(delBtn);
-  toDoDiv.appendChild(newDiv);
+  toDoDiv.insertBefore(newDiv, toDoDiv.firstChild);
   toDoDiv.classList.remove('todo-list--loading');
 }
 
 async function makeRemoveTodo(e, id) {
   e.stopPropagation();
-  await firebase.database().ref(path + "/" + id).remove();
+  await db.ref(path + "/" + id).remove();
   const node = e.target.parentNode;
   node.parentNode.removeChild(node);
 }
@@ -104,7 +111,7 @@ async function makeRemoveTodo(e, id) {
 async function completeTodo(e, id, bool) {
   if (e.target !== e.currentTarget) return;
   if ((e.type === "keydown" && (e.key === "Enter" || e.key === "Space")) || e.type === "click") {
-    await firebase.database().ref(path + "/" + id).update({ complete: bool });
+    await db.ref(path + "/" + id).update({ complete: bool });
     const item = e.target;
     if (item.classList.contains('complete')) {
       item.classList.remove('complete');
