@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Event</title>
+  <style>
+    .outer {
+      background-color: skyblue;
+      width: 800px;
+      height: 600px;
+      position: relative;
+    }
+    
+    .box {
+      background-color: cornflowerblue;
+      width: 30px;
+      height: 30px;
+      top: 10px;
+      left: 10px;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="outer">
+    <div class="box"></div>
+  </div>
+  <script>
+    const box = document.querySelector('.box');
+    const outer = document.querySelector('.outer');
+    let start = false;
+    let oriX, oriY = 0;
+    let newX, newY = 0;
+    let gapX, gapY = 10;
+    outer.addEventListener('mousedown', e => {
+      if (e.target === box) {
+        start = true;
+        const rect = box.getBoundingClientRect();
+        gapX = rect.x;
+        gapY = rect.y;
+        oriX = e.clientX;
+        oriY = e.clientY;
+      }
+    });
+    outer.addEventListener('mouseup', e => {
+      start = false;
+    });
+    outer.addEventListener('mousemove', e => {
+      if (start) {
+        newX = e.clientX - oriX;
+        newY = e.clientY - oriY;
+        if (newX !== 0) {
+          box.style.left = `${newX+gapX}px`;
+        }
+        if (newY !== 0) {
+          box.style.top = `${newY+gapY}px`;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

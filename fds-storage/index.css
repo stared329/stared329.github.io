@@ -1,0 +1,10 @@
+.init-box.comp, .upload-box.comp {
+  display: none;
+}
+.init-box {
+  display: block;
+}
+img {
+  width: 200px;
+  height: 200px;
+}

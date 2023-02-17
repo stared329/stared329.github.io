@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Debounce & Throttle</title>
+</head>
+
+<body>
+  <input type="text" name="input" id="debounce">
+  <input type="text" name="input" id="throttle">
+  <div class="chat"></div>
+  <script>
+    function debounce(cb, time) {
+      let timeoutId;
+      return function() {
+        if (timeoutId)
+          clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          cb();
+          timeoutId = null;
+        }, time)
+      }
+    }
+
+    function throttle(cb, time) {
+      let throttled = false;
+      let timeoutId;
+      return function() {
+        if (!throttled) {
+          cb();
+        }
+        if (!timeoutId) {
+          timeoutId = setTimeout(() => {
+            throttled = false;
+            timeoutId = null;
+          }, time);
+        }
+        throttled = true;
+      }
+    }
+
+    const el1 = document.querySelector('#debounce');
+    el1.addEventListener('input', debounce(() => {
+      alert(el1.value);
+    }, 2000));
+
+    const throttleAppendChat = throttle(addChat, 2000);
+    const el2 = document.querySelector('#throttle');
+    el2.addEventListener('keydown', function(e) {
+      if (e.key == 'Enter' && el2.value.length > 0) {
+        console.log("in enter");
+        throttleAppendChat();
+      }
+    });
+
+    function addChat() {
+      const chat = document.querySelector('.chat');
+      const pline = document.createElement('p');
+      pline.textContent = el2.value;
+      chat.appendChild(pline);
+      el2.value = "";
+    }
+  </script>
+</body>
+
+</html>
