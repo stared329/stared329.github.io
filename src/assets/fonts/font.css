@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@font-face {
+    font-family: "Wedding KR";
+    font-style: normal;
+    font-weight: 400;
+    src: url("./letterFromMom_medium.woff") format("woff");
+}
+@font-face {
+    font-family: "Wedding KR";
+    font-style: normal;
+    font-weight: 100;
+    src: url("./letterFromMom_light.woff") format("woff");
+}
+@font-face {
+    font-family: "Weddin KR";
+    font-style: normal;
+    font-weight: 800;
+    src: url("./letterFromMom_bold.woff") format("woff");
+}
