@@ -16,3 +16,50 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.root-back {
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  overflow: hidden;
+  background: linear-gradient(45deg, rgb(255, 255, 255), rgb(136, 177, 148), rgb(84, 142, 100)) 0% 0% / 400% 400%;
+  animation: 20s ease 0s infinite normal none running colors;
+}
+
+@-webkit-keyframes colors {
+  0% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 50% 0%;
+  }
+}
+@-moz-keyframes colors {
+  0% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 50% 0%;
+  }
+}
+@keyframes colors {
+  0% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 50% 0%;
+  }
+}
