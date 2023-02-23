@@ -4,7 +4,7 @@ export default function PhotoViewer({ open, index, onClose }) {
 const [current, setCurrent] = useState(null);
 
 const handleNextPrev = (e) => {
-    const bNext = e.clientX > window.screen.availWidth/2;
+    const bNext = e.clientX > window.innerWidth/2;
     if(bNext) {
         setCurrent((prev) => prev === 13 ? 0 : prev+1);
     } else {
@@ -24,7 +24,7 @@ useEffect(() => {
               className="fixed inset-0 w-full h-full bg-white opacity-70"
               onClick={onClose}
             ></div>
-            <div className="flex items-center min-h-screen" onClick={handleNextPrev}>
+            <div className="flex items-center min-h-full z-15" onClick={handleNextPrev}>
               <div className="relative w-full rounded-md">
                 <img src={`img/${current < 10 ? '00' : '0'}${current}.jpg`} alt="사진 보기" className="w-full" />
               </div>

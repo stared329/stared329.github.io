@@ -12,10 +12,13 @@ const Sparkles = () => (<svg xmlns="http://www.w3.org/2000/svg" fill="none" view
 );
 
 function App() {
-  const [height, setHeight] = useState(parseInt(1.50333504*window.screen.width, 10));
+  const { width } = window.screen;
+  const w = width > 448 ? 448 : width;
+  const [height, setHeight] = useState(parseInt(1.50333504*w, 10));
   useEffect(() => {
     const { width } = window.screen;
-    setHeight(parseInt(1.50333504*width, 10));
+    const w = width > 448 ? 448 : width;
+    setHeight(parseInt(1.50333504*w, 10));
   }, []);
 
   const [grF, grM] = [
@@ -118,7 +121,7 @@ function App() {
               </div>
             </div>
           </div>
-          <div className="bg-white px-8 py-16">
+          <div className="bg-[#FFFFFF00] px-8 py-16">
             <PhotoAlbum layout="rows" photos={photos} padding={0} spacing={8} onClick={handlePhoto} />
           </div>
           <div className="bg-back text-white font-light text-sm">
