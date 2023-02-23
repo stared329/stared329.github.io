@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PhotoAlbum from "react-photo-album";
 import Line from './assets/img/line_01.svg';
 import KakaoMap from "./KakaoMap";
@@ -12,6 +12,12 @@ const Sparkles = () => (<svg xmlns="http://www.w3.org/2000/svg" fill="none" view
 );
 
 function App() {
+  const [height, setHeight] = useState(parseInt(1.50333504*window.screen.width, 10));
+  useEffect(() => {
+    const { width } = window.screen;
+    setHeight(parseInt(1.50333504*width, 10));
+  }, []);
+
   const [grF, grM] = [
     {name:"안기환", re:"아버지", tel: "01000001234", bank: "기업", account: "123-456-78910"}, 
     { name: "이재순", re:"어머니", tel: "01000001234", bank: "기업", account: "123-456-78910"}, 
@@ -54,22 +60,24 @@ function App() {
   return (
     <div className="root-back min-h-screen">
       <div className="flex w-full justify-center overflow-auto opacity-95">
-        <div className={`container max-w-md mx-auto  h-full text-back ${openPhoto.open && 'blur-md'}`}>
-          <h1 className="bg-white font-cursive w-full text-center py-4">Wedding invitaion</h1>
-          <div className="bg-[url('assets/img/004.jpg')] bg-contain bg-no-repeat relative h-[673px]">
-            <div className="absolute inline-flex justify-center w-full gap-4 top-0 bg-gradient-to-b py-6 from-white">
-              <h2 className="text-3xl font-bold">{gr.name}</h2>
-              <p className="font-cursive self-end">and</p>
-              <h2 className="text-3xl font-bold">{br.name}</h2>
-            </div>
-            <div className="absolute flex flex-col justify-center w-full text-center text-lg bottom-0 pt-10" style={{background: 'linear-gradient(to top, #FFFFFF 65%, rgba(255, 255, 255, 0) 100%)'}}>
-              <h3 className="font-bold">2023년 5월 6일 토요일 오후 1시 20분</h3>
-              <h3>신도림 테크노마트 <b>7층</b></h3>
-              <h3 className="font-bold">웨스턴베니비스 다이너스티홀</h3>
+        <div className={`container max-w-md mx-auto h-full text-back ${openPhoto.open && 'blur-md'}`}>
+          <div className={`bg-[url('assets/img/004.jpg')] bg-cover bg-no-repeat flex flex-col`} style={{height}}>
+            <div className="flex flex-col mix-blend-color-burn">
+              <h1 className="bg-white font-cursive w-full text-center py-4">Wedding invitaion</h1>
+              <div className="inline-flex justify-center w-full gap-[12px] py-3">
+                <h2 className="text-3xl font-bold">{gr.name}</h2>
+                <p className="font-cursive self-end">and</p>
+                <h2 className="text-3xl font-bold">{br.name}</h2>
+              </div>
             </div>
           </div>
-          <div className="bg-white flex flex-col gap-10 py-16">
-            <div className="flex flex-col gap-2 justify-center">
+          <div className="flex flex-col justify-center w-full text-center text-lg py-6 bg-white">
+            <h3 className="font-bold">2023년 5월 6일 토요일 오후 1시 20분</h3>
+            <h3>신도림 테크노마트 <b>7층</b></h3>
+            <h3 className="font-bold">웨스턴베니비스 다이너스티홀</h3>
+          </div>
+          <div className="bg-white flex flex-col gap-10 pb-16">
+            <div className="flex flex-col gap-2 justify-center mt-10 mb-4">
               <img src={Line} alt="botanic line" className='w-2/3 mx-auto mb-4' />
               {["모든 것이 새로워지는 봄날,", "사랑하는 두 사람이", "새 인생을 시작하려 합니다.", "바쁘시더라도 와주셔서", "저희 두 사람의 결혼을 축복해 주시고", "따뜻한 마음으로 격려해 주신다면", "큰 힘이 되겠습니다."].map(v => <p className="w-full text-center">{v}</p>)}
               <img src={Line} alt="botanic line" className='w-2/3 rotate-180 mx-auto mt-4' />
