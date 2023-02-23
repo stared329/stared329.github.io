@@ -20,7 +20,6 @@ const unsplashPhotos = [
 ];
 
 const photos = unsplashPhotos.map((photo, i) => {
-  console.log(unsplashLink(i));
   return {
     src: unsplashLink(i),
     width: photo.width,
