@@ -16,7 +16,7 @@ const unsplashPhotos = [
   { width: 417, height: 627 },
   { width: 417, height: 627 },
   { width: 627, height: 417 },
-  { width: 417, height: 627 }
+  { width: 417, height: 627 },
 ];
 
 const photos = unsplashPhotos.map((photo, i) => {
@@ -29,9 +29,9 @@ const photos = unsplashPhotos.map((photo, i) => {
       return {
         src: unsplashLink(i),
         width: breakpoint,
-        height
+        height,
       };
-    })
+    }),
   };
 });
 
