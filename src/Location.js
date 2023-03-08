@@ -35,7 +35,7 @@ const Location = () => {
   };
 
   return (
-    <div className="bg-back text-white font-light text-sm">
+    <div className="flex flex-col min-h-screen-full justify-center overflow-y-auto bg-back text-white font-light text-sm">
       <KakaoMap />
       <a
         href="https://m.map.kakao.com/actions/searchView?q=%EC%84%9C%EC%9A%B8+%EA%B5%AC%EB%A1%9C%EA%B5%AC+%EC%83%88%EB%A7%90%EB%A1%9C+97&wxEnc=LVSOTP&wyEnc=QNLTTMN&lvl=4#!/all/map/place"
@@ -126,26 +126,16 @@ const Location = () => {
             </div>
             <div className="inline-flex justify-evenly m-1 w-full">
               <div
-                className="rounded-sm w-full inline-flex items-center mr-2 justify-center gap-1 text-base font-bold bg-[#FAE001] text-[#1976D2]"
+                className="rounded-sm w-full inline-flex items-center"
                 onClick={startKakaoNavi}
               >
-                <img
-                  src="img/kakao_navi.png"
-                  style={{ width: '32px' }}
-                  alt="카카오 네비 로고"
-                />
-                <span>카카오맵 길안내</span>
+                <img src="img/kakao_navi.png" alt="카카오맵 길안내" />
               </div>
               <div
-                className="rounded-sm w-full inline-flex items-center mr-2 justify-center gap-1 text-base font-bold bg-white text-[#000000]"
+                className="rounded-sm w-full inline-flex items-center"
                 onClick={startTmap}
               >
-                <img
-                  src="img/tmap_navi.png"
-                  style={{ width: '32px' }}
-                  alt="티맵 네비 로고"
-                />
-                <span>티맵 길안내</span>
+                <img src="img/tmap_navi.png" alt="티맵 길안내" />
               </div>
             </div>
           </div>

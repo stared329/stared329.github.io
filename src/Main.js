@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import bg from './assets/bg.mp3';
 
-const Main = ({ height, gr, br }) => {
-  const [audioStatus, changeAudioStatus] = useState(false);
+const Main = ({ audioStatus: as, height, gr, br }) => {
   const myRef = useRef();
+  const [audioStatus, changeAudioStatus] = useState(false);
+
   const handleBG = () => {
     if (audioStatus) {
       myRef.current.pause();
@@ -12,8 +13,21 @@ const Main = ({ height, gr, br }) => {
     }
     changeAudioStatus(!audioStatus);
   };
+
+  useEffect(() => {
+    if (as) {
+      myRef.current.play();
+    } else {
+      myRef.current.pause();
+    }
+    if (as !== audioStatus) {
+      changeAudioStatus(as);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [as]);
+
   return (
-    <>
+    <div className="flex flex-col bg-white h-screen-full pb-8">
       <div
         className={`bg-[url('assets/img/004.jpg')] bg-cover bg-no-repeat flex flex-col relative`}
         style={{ height }}
@@ -60,20 +74,22 @@ const Main = ({ height, gr, br }) => {
             Wedding invitaion
           </h1>
           <div className="inline-flex justify-center w-full gap-[12px] py-3">
-            <h2 className="text-3xl font-bold">{gr.name}</h2>
+            {gr && <h2 className="text-3xl font-bold">{gr.child.name}</h2>}
             <p className="font-cursive self-end">and</p>
-            <h2 className="text-3xl font-bold">{br.name}</h2>
+            {br && <h2 className="text-3xl font-bold">{br.child.name}</h2>}
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-center w-full text-center text-lg py-6 bg-white">
+      <div
+        className={`flex flex-col justify-center w-full text-center text-lg py-8 bg-white m-auto h-[calc(100% - ${height}px)]`}
+      >
         <h3 className="font-bold">2023년 5월 6일 토요일 오후 1시 20분</h3>
         <h3>
           신도림 테크노마트 <b>7층</b>
         </h3>
         <h3 className="font-bold">웨스턴베니비스 다이너스티홀</h3>
       </div>
-    </>
+    </div>
   );
 };
 
