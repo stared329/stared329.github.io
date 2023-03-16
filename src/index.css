@@ -17,6 +17,22 @@ code {
     monospace;
 }
 
+input,
+div,
+p,
+span,
+textarea,
+button,
+a {
+  word-break: keep-all;
+}
+
+button:active,
+button:focus-visible {
+  background: transparent;
+  outline: none;
+}
+
 .root-back {
   top: 0px;
   bottom: 0px;

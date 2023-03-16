@@ -7,11 +7,11 @@ const Introduce = ({ father, mother, child }) => {
     () => {
       navigator.clipboard.writeText(`${b} ${a} ${n}`);
       alert(`${n}님의 계좌번호
-      ${b} ${a}
-      복사되었습니다.`);
+${b} ${a}
+복사되었습니다.`);
     };
   return (
-    <div className="flex flex-col bg-white h-screen-full justify-end pb-8">
+    <div className="flex flex-col bg-white h-screen-full justify-evenly">
       <div className="bg-white flex flex-col gap-10 pb-16">
         <div className="flex flex-col gap-2 justify-center mt-10 mb-4">
           <img src={Line} alt="botanic line" className="w-2/3 mx-auto mb-4" />
@@ -68,7 +68,7 @@ const Introduce = ({ father, mother, child }) => {
                 문자
               </a>
               <span
-                className="bg-accent py-1 px-2 text-white rounded-sm"
+                className="bg-accent py-1 px-2 text-white rounded-sm cursor-pointer"
                 onClick={handleAccount(father)}
               >
                 축의

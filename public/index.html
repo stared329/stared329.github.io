@@ -14,7 +14,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://stared329.github.io" />
     <meta property="og:title" content="[안승범♥김재명] 초대합니다." />
-    <meta property="og:image" content="%PUBLIC_URL%/cover.png" />
+    <meta property="og:image" content="%PUBLIC_URL%/og_img.png" />
     <meta
       property="og:description"
       content="2023년 05월 06일 13시 20분 웨스턴베니비스 신도림 다이너스티홀"
@@ -67,18 +67,18 @@
           var q = {};
           l.search
             .slice(1)
-            .split("&")
+            .split('&')
             .forEach(function (v) {
-              var a = v.split("=");
-              q[a[0]] = a.slice(1).join("=").replace(/~and~/g, "&");
+              var a = v.split('=');
+              q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
             });
           if (q.p !== undefined) {
             window.history.replaceState(
               null,
               null,
               l.pathname.slice(0, -1) +
-                (q.p || "") +
-                (q.q ? "?" + q.q : "") +
+                (q.p || '') +
+                (q.q ? '?' + q.q : '') +
                 l.hash
             );
           }
@@ -111,6 +111,6 @@
     crossorigin="anonymous"
   ></script>
   <script>
-    Kakao.init("21fb7412a9b640e49f3c99c0f446ff29"); // 사용하려는 앱의 JavaScript 키 입력
+    Kakao.init('21fb7412a9b640e49f3c99c0f446ff29'); // 사용하려는 앱의 JavaScript 키 입력
   </script>
 </html>

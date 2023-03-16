@@ -33,19 +33,19 @@ export default function PhotoViewer({ open, index, onClose }) {
                 <img
                   src={`img/${current < 10 ? '00' : '0'}${current}.jpg`}
                   alt="사진 보기"
-                  className="w-full max-w-fit max-h-[70vh] m-auto transition-opacity delay-150"
+                  className="w-full py-6 max-w-fit m-auto transition-opacity delay-150"
                 />
               </div>
 
               <button
                 id="viewer_close"
-                className="absolute top-0 w-full h-10 bg-back text-white text-center"
+                className="absolute top-0 w-full h-10 bg-back text-white text-center z-50"
                 onClick={handleClose}
               >
                 닫기
               </button>
               <button
-                className="absolute left-0 w-1/2 h-full text-left"
+                className="absolute left-0 w-1/2 h-full text-left bg-transparent"
                 onClick={handleNextPrev(false)}
               >
                 <svg
@@ -64,7 +64,7 @@ export default function PhotoViewer({ open, index, onClose }) {
                 </svg>
               </button>
               <button
-                className="absolute right-0 w-1/2 h-full text-right"
+                className="absolute right-0 w-1/2 h-full text-right bg-transparent"
                 onClick={handleNextPrev(true)}
               >
                 <svg

@@ -1,22 +1,22 @@
 const breakpoints = [1080, 640, 384, 256, 128, 96, 64, 48];
 
-const unsplashLink = (id) => `thumb/${id < 10 ? "00" : "0"}${id}.jpg`;
+const unsplashLink = (id) => `img/${id < 10 ? '00' : '0'}${id}.jpg`;
 
 const unsplashPhotos = [
-  { width: 627, height: 417 },
-  { width: 417, height: 627 },
-  { width: 417, height: 627 },
-  { width: 417, height: 627 },
-  { width: 417, height: 627 },
-  { width: 417, height: 627 },
-  { width: 627, height: 417 },
-  { width: 417, height: 627 },
-  { width: 417, height: 627 },
-  { width: 417, height: 627 },
-  { width: 417, height: 627 },
-  { width: 417, height: 627 },
-  { width: 627, height: 417 },
-  { width: 417, height: 627 },
+  { width: 640, height: 426 },
+  { width: 640, height: 963 },
+  { width: 640, height: 962 },
+  { width: 640, height: 963 },
+  { width: 640, height: 962 },
+  { width: 640, height: 962 },
+  { width: 640, height: 427 },
+  { width: 640, height: 963 },
+  { width: 640, height: 962 },
+  { width: 640, height: 962 },
+  { width: 640, height: 962 },
+  { width: 640, height: 963 },
+  { width: 640, height: 426 },
+  { width: 640, height: 962 },
 ];
 
 const photos = unsplashPhotos.map((photo, i) => {

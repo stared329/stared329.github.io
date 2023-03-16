@@ -27,7 +27,7 @@ const Main = ({ audioStatus: as, height, gr, br }) => {
   }, [as]);
 
   return (
-    <div className="flex flex-col bg-white h-screen-full pb-8">
+    <div className="flex flex-col bg-white h-screen-full">
       <div
         className={`bg-[url('assets/img/004.jpg')] bg-cover bg-no-repeat flex flex-col relative`}
         style={{ height }}

@@ -124,18 +124,20 @@ const Location = () => {
               <span className="opacity-80 shrink-0 mr-1">[구주소]</span>
               <span>서울시 구로구 구로동 3-25 신도림테크노마트</span>
             </div>
-            <div className="inline-flex justify-evenly m-1 w-full">
+            <div className="inline-flex flex-wrap m-1 w-full gap-2 justify-around">
               <div
-                className="rounded-sm w-full inline-flex items-center"
+                className="rounded-sm inline-flex items-center gap-1 min-w-[8rem]"
                 onClick={startKakaoNavi}
               >
-                <img src="img/kakao_navi.png" alt="카카오맵 길안내" />
+                <img src="img/kakao.png" alt="카카오맵 길안내" />
+                <span>카카오맵 길안내</span>
               </div>
               <div
-                className="rounded-sm w-full inline-flex items-center"
+                className="rounded-sm inline-flex items-center gap-1 min-w-[8rem]"
                 onClick={startTmap}
               >
-                <img src="img/tmap_navi.png" alt="티맵 길안내" />
+                <img src="img/tmap.png" alt="티맵 길안내" />
+                <span>티맵 길안내</span>
               </div>
             </div>
           </div>

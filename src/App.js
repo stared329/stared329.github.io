@@ -18,15 +18,15 @@ function App() {
     mother: null,
     child: null,
   });
-  document.addEventListener('touchstart', handleTouchStart, false);
-  document.addEventListener('touchmove', handleTouchMove, false);
+  if (width < 449) {
+    document.addEventListener('touchstart', handleTouchStart, false);
+    document.addEventListener('touchmove', handleTouchMove, false);
+  }
 
   useEffect(() => {
-    if (window.location.pathname === '/gr') {
-      setInfo(info.gr);
-    }
-    if (window.location.pathname === '/br') {
-      setInfo(info.br);
+    const [k, v] = window.location.search.replace('?', '').split('=');
+    if (k === 'target' && ['br', 'gr'].includes(v)) {
+      setInfo(info[v]);
     }
     return () => {
       changeAudioStatus(false);
@@ -100,14 +100,26 @@ function App() {
     <div className="root-back h-screen-full">
       <div className="flex w-full justify-center overflow-auto opacity-95">
         <div
-          className={`container max-w-md mx-auto h-screen-full text-back ${
+          className={`relative container max-w-md mx-auto h-screen-full text-back ${
             openPhoto.open && 'blur-md'
           }`}
         >
+          {width > 448 && (
+            <button
+              className="absolute text-[xxx-large] text-white top-0 bottom-0 left-[-10%]"
+              onClick={() => current > 0 && setCur(current - 1)}
+            >{`<`}</button>
+          )}
+          {width > 448 && (
+            <button
+              className="absolute text-[xxx-large] text-white top-0 bottom-0 right-[-10%]"
+              onClick={() => current < 3 && setCur(current + 1)}
+            >{`>`}</button>
+          )}
           <TransitionGroup>
             {current === 0 && (
               <CSSTransition nodeRef={mainRef} timeout={500} classNames="item">
-                <div ref={mainRef}>
+                <div ref={mainRef} className="absolute inset-0">
                   <Main
                     {...{ height, ...info, audioStatus, changeAudioStatus }}
                   />
@@ -116,29 +128,29 @@ function App() {
             )}
             {current === 1 && (
               <CSSTransition nodeRef={introRef} timeout={500} classNames="item">
-                <div ref={introRef}>
+                <div ref={introRef} className="absolute inset-0">
                   <Introduce {...{ father, mother, child }} />
                 </div>
               </CSSTransition>
             )}
             {current === 2 && (
-              <CSSTransition nodeRef={mainRef} timeout={500} classNames="item">
-                <div ref={galRef}>
+              <CSSTransition nodeRef={galRef} timeout={500} classNames="item">
+                <div ref={galRef} className="absolute inset-0">
                   <Gallery {...{ setPhoto }} />
                 </div>
               </CSSTransition>
             )}
             {current === 3 && (
-              <CSSTransition nodeRef={mainRef} timeout={500} classNames="item">
-                <div ref={locRef}>
+              <CSSTransition nodeRef={locRef} timeout={500} classNames="item">
+                <div ref={locRef} className="absolute inset-0">
                   <Location />
                 </div>
               </CSSTransition>
             )}
           </TransitionGroup>
-          <footer className="bg-transparent fixed bottom-0 max-w-md mx-auto w-full font-sans text-xs text-center opacity-50 mix-blend-difference py-2">
+          {/* <footer className="bg-transparent fixed bottom-0 max-w-md mx-auto w-full font-sans text-xs text-center opacity-50 mix-blend-difference py-2">
             Copyright 2023 jamie kim All rights reserved.
-          </footer>
+          </footer> */}
         </div>
         <PhotoViewer
           {...{
