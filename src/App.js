@@ -45,13 +45,13 @@ function App() {
   }, []);
 
   const handleNext = (e) => {
-    current < 3 && setCur(current + 1);
+    current < 3 ? setCur(current + 1) : setCur(0);
     if (!audioStatus) {
       handleBG();
     }
   };
   const handlePrev = (e) => {
-    current > 0 && setCur(current - 1);
+    current > 0 ? setCur(current - 1) : setCur(3);
     if (!audioStatus) {
       handleBG();
     }
@@ -139,7 +139,7 @@ function App() {
               onClick={handleNext}
             >{`>`}</button>
           )}
-          <audio ref={myRef} src={bg} />
+          <audio ref={myRef} src={bg} loop />
           <button
             className="absolute right-1 top-1 text-white opacity-75 z-10"
             onClick={handleBG}
