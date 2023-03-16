@@ -12,7 +12,7 @@ ${b} ${a}
     };
   return (
     <div className="flex flex-col bg-white h-screen-full justify-evenly">
-      <div className="bg-white flex flex-col gap-10 pb-16">
+      <div className="bg-white flex flex-col gap-10 py-8 my-auto">
         <div className="flex flex-col gap-2 justify-center mt-10 mb-4">
           <img src={Line} alt="botanic line" className="w-2/3 mx-auto mb-4" />
           {[
