@@ -1,91 +1,140 @@
 import React, { useEffect, useState } from 'react';
 
 export default function PhotoViewer({ open, index, onClose }) {
-  const [current, setCurrent] = useState(null);
+  const list = new Array(14).fill(0).map((_, i) => i);
+  const [current, setCurrent] = useState(0);
+  const [show, setShow] = useState(false);
 
   const handleNextPrev = (bNext) => (e) => {
-    console.log(e.target.id);
     if (e.target.id !== 'viewer_close') {
+      let index = current;
       if (bNext) {
-        setCurrent((prev) => (prev === 13 ? 0 : prev + 1));
+        index = current < 13 && current + 1;
       } else {
-        setCurrent((prev) => (prev === 0 ? 13 : prev - 1));
+        index = current > 0 && current - 1;
       }
+      const el = document.getElementById(`slide${index}`);
+      console.log(el, `slide${index}`);
+      el.scrollIntoView({ behavior: 'smooth' });
+      setCurrent(index);
     }
   };
 
   const handleClose = (e) => {
-    console.log(e.target);
     onClose();
   };
 
   useEffect(() => {
     setCurrent(index);
-  }, [index]);
+    if (open) {
+      document
+        .getElementById(`slide${index}`)
+        .scrollIntoView({ behavior: 'instant', block: 'center' });
+      setShow(true);
+    } else {
+      setShow(false);
+      setCurrent(0);
+    }
+  }, [index, open]);
   return (
     <>
-      {open ? (
-        <>
-          <div className="fixed inset-0 z-10 overflow-y-auto">
-            <div className="fixed inset-0 w-full h-full bg-white opacity-70"></div>
-            <div className="flex items-center min-h-full z-15 relative">
-              <div className="relative w-full rounded-md">
+      <div
+        className={`fixed inset-0 z-10 overflow-y-auto ${
+          open ? 'block' : 'hidden'
+        }`}
+      >
+        <div className="fixed inset-0 w-full h-screen-full bg-white opacity-70"></div>
+        <div className="flex items-center min-h-full z-15 relative">
+          <div className="carousel w-full">
+            {list.map((c, i) => (
+              <div
+                id={`slide${i}`}
+                key={`key${i}`}
+                className="carousel-item relative w-full"
+              >
                 <img
-                  src={`img/${current < 10 ? '00' : '0'}${current}.jpg`}
+                  src={`img/${c < 10 ? '00' : '0'}${c}.jpg`}
                   alt="사진 보기"
-                  className="w-full py-6 max-w-fit m-auto transition-opacity delay-150"
+                  className={`w-full py-6 max-w-fit m-auto ${
+                    show ? 'opacity-100' : 'opacity-0'
+                  }`}
                 />
+                {/* <div className="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 top-1/2">
+                      <a
+                        href={
+                          i === 0
+                            ? `#slide${list.length - 1}`
+                            : `#slide${list[i + 1]}`
+                        }
+                        className="btn btn-circle bg-back opacity-75 mix-blend-multiply border-none"
+                      >
+                        ❮
+                      </a>
+                      <a
+                        href={
+                          i === list.length - 1
+                            ? '#slide0'
+                            : `#slide${list[i + 1]}`
+                        }
+                        className="btn btn-circle bg-back opacity-75 mix-blend-multiply border-none"
+                      >
+                        ❯
+                      </a>
+                    </div> */}
               </div>
-
-              <button
-                id="viewer_close"
-                className="absolute top-0 w-full h-10 bg-back text-white text-center z-50"
-                onClick={handleClose}
-              >
-                닫기
-              </button>
-              <button
-                className="absolute left-0 w-1/2 h-full text-left bg-transparent"
-                onClick={handleNextPrev(false)}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                  />
-                </svg>
-              </button>
-              <button
-                className="absolute right-0 w-1/2 h-full text-right bg-transparent"
-                onClick={handleNextPrev(true)}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6 inline-block"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  />
-                </svg>
-              </button>
-            </div>
+            ))}
           </div>
-        </>
-      ) : null}
+          <button
+            id="viewer_close"
+            className="absolute top-0 w-full h-10 bg-back text-white text-center z-50"
+            onClick={handleClose}
+          >
+            닫기
+          </button>
+          {current > 0 && (
+            <div
+              className="absolute left-0 w-1/2 h-screen-full bg-transparent flex items-center"
+              onClick={handleNextPrev(false)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>
+            </div>
+          )}
+          {current < list.length - 1 && (
+            <div
+              className="absolute right-0 w-1/2 h-screen-full bg-transparent flex items-center justify-end"
+              onClick={handleNextPrev(true)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </div>
+          )}
+        </div>
+      </div>
     </>
   );
 }

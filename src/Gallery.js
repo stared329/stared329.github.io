@@ -12,7 +12,7 @@ const Gallery = ({ setPhoto }) => {
     });
   };
   return (
-    <div className="flex flex-col bg-[#FFFFFF00] h-screen-full justify-center px-8 py-16">
+    <div className="flex flex-col bg-[#FFFFFF00] h-screen-full w-screen justify-center px-8 py-16">
       <PhotoAlbum
         layout="rows"
         photos={photos}

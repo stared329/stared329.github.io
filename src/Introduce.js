@@ -11,7 +11,7 @@ ${b} ${a}
 복사되었습니다.`);
     };
   return (
-    <div className="flex flex-col bg-white h-screen-full justify-evenly">
+    <div className="flex flex-col bg-white h-screen-full w-screen justify-evenly">
       <div className="bg-white flex flex-col gap-10 py-8 my-auto">
         <div className="flex flex-col gap-2 justify-center mt-10 mb-4">
           <img src={Line} alt="botanic line" className="w-2/3 mx-auto mb-4" />
@@ -23,8 +23,10 @@ ${b} ${a}
             '저희 두 사람의 결혼을 축복해 주시고',
             '따뜻한 마음으로 격려해 주신다면',
             '큰 힘이 되겠습니다.',
-          ].map((v) => (
-            <p className="w-full text-center">{v}</p>
+          ].map((v, i) => (
+            <p className="w-full text-center" key={`poem_${i}`}>
+              {v}
+            </p>
           ))}
           <img
             src={Line}

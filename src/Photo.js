@@ -1,6 +1,6 @@
 const breakpoints = [1080, 640, 384, 256, 128, 96, 64, 48];
 
-const unsplashLink = (id) => `img/${id < 10 ? '00' : '0'}${id}.jpg`;
+const unsplashLink = (id) => `thumb/${id < 10 ? '00' : '0'}${id}.jpg`;
 
 const unsplashPhotos = [
   { width: 640, height: 426 },

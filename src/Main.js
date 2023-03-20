@@ -2,7 +2,7 @@ import React from 'react';
 
 const Main = ({ height, gr, br }) => {
   return (
-    <div className="flex flex-col bg-white h-screen-full">
+    <div className="flex flex-col bg-white h-screen-full w-screen">
       <div
         className={`bg-[url('assets/img/004.jpg')] bg-cover bg-no-repeat flex flex-col relative`}
         style={{ height }}
