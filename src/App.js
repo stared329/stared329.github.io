@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactSparkle from 'react-sparkle';
 import PhotoViewer from './PhotoViewer';
 import Main from './Main';
@@ -11,25 +11,22 @@ function App() {
   const { width } = window.screen;
   const w = width > 448 ? 448 : width;
   const [height, setHeight] = useState(parseInt(1.50333504 * w, 10));
-  const [audioStatus, changeAudioStatus] = useState(false);
+  const [play, setPlay] = useState(false);
+  const audioRef = useRef();
   const [{ father, mother, child }, setInfo] = useState(info.br);
+  const [openPhoto, setPhoto] = useState({ open: false, index: null });
 
   const handleStart = (e) => {
-    // if (!audioStatus) {
-    //   handleBG();
-    // }
     setPlay(true);
     document.removeEventListener('click', handleStart);
-    // document.removeEventListener('mousedown', handleStart);
   };
 
   if (width < 449) {
     document.addEventListener('click', handleStart, false);
-  } else {
-    // document.addEventListener('mousedown', handleStart);
   }
   document.addEventListener('beforeunload', () => {
-    // myRef.current.pause();
+    audioRef.current.pause();
+    setPlay(false);
   });
 
   useEffect(() => {
@@ -39,16 +36,10 @@ function App() {
     } else {
       setInfo(info.br);
     }
-  }, []);
-
-  useEffect(() => {
     const { width } = window.screen;
     const w = width > 448 ? 448 : width;
     setHeight(parseInt(1.50333504 * w, 10));
   }, []);
-
-  const [play, setPlay] = useState(false);
-  const audioRef = useRef();
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -57,13 +48,11 @@ function App() {
 
     if (audio && play) {
       onPlay();
-      // audio.addEventListener('canplaythrough', onPlay);
     }
 
     return () => {
       if (audio) {
-        audio.pause(); // to enable garbage collection
-        // audio.removeEventListener('canplaythrough', onPlay);
+        audio.pause();
       }
     };
   }, [play]);
@@ -71,12 +60,6 @@ function App() {
   const onStart = () => {
     setPlay(!play);
   };
-
-  const [openPhoto, setPhoto] = useState({ open: false, index: null });
-  const mainRef = createRef(null);
-  const introRef = createRef(null);
-  const galRef = createRef(null);
-  const locRef = createRef(null);
 
   return (
     <div className="root-back h-screen-full">
@@ -116,55 +99,15 @@ function App() {
               <path d="M3,9H7L12,4V20L7,15H3V9M16.59,12L14,9.41L15.41,8L18,10.59L20.59,8L22,9.41L19.41,12L22,14.59L20.59,16L18,13.41L15.41,16L14,14.59L16.59,12Z" />
             </svg>
           </label>
-          {/* <TransitionGroup>
-            {current === 0 && (
-              <CSSTransition nodeRef={mainRef} timeout={500} classNames="item">
-                <div ref={mainRef} className="absolute inset-0">
-                  <Main
-                    {...{ height, ...info, audioStatus, changeAudioStatus }}
-                  />
-                </div>
-              </CSSTransition>
-            )}
-            {current === 1 && (
-              <CSSTransition nodeRef={introRef} timeout={500} classNames="item">
-                <div ref={introRef} className="absolute inset-0">
-                  <Introduce {...{ father, mother, child }} />
-                </div>
-              </CSSTransition>
-            )}
-            {current === 2 && (
-              <CSSTransition nodeRef={galRef} timeout={500} classNames="item">
-                <div ref={galRef} className="absolute inset-0">
-                  <Gallery {...{ setPhoto }} />
-                </div>
-              </CSSTransition>
-            )}
-            {current === 3 && (
-              <CSSTransition nodeRef={locRef} timeout={500} classNames="item">
-                <div ref={locRef} className="absolute inset-0">
-                  <Location />
-                </div>
-              </CSSTransition>
-            )}
-          </TransitionGroup> */}
-          <div className="h-screen-full carousel carousel-vertical">
-            <div ref={mainRef} className="carousel-item h-screen-full">
-              <Main {...{ height, ...info, audioStatus, changeAudioStatus }} />
-            </div>
-            <div ref={introRef} className="carousel-item h-screen-full">
-              <Introduce {...{ father, mother, child }} />
-            </div>
-            <div ref={galRef} className="carousel-item h-screen-full">
-              <Gallery {...{ setPhoto }} />
-            </div>
-            <div ref={locRef} className="carousel-item">
-              <Location />
-            </div>
-          </div>
-          {/* <footer className="bg-transparent fixed bottom-0 max-w-md mx-auto w-full font-sans text-xs text-center opacity-50 mix-blend-difference py-2">
-            Copyright 2023 jamie kim All rights reserved.
-          </footer> */}
+          <Main {...{ height, ...info }} />
+          <Introduce {...{ father, mother, child }} />
+          <Gallery {...{ setPhoto }} />
+          <Location />
+          <footer className="bg-back max-w-md mx-auto w-full font-sans text-xs text-center text-white py-2">
+            <p className="opacity-60">
+              Copyright 2023 jamie kim All rights reserved.
+            </p>
+          </footer>
         </div>
         <PhotoViewer
           {...{
