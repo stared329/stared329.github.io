@@ -1,11 +1,11 @@
 import React from 'react';
-import useScrollFadeIn from './hooks';
+import useScrollFadeIn from '../util/hooks';
 
 const Main = ({ height, gr, br }) => {
   return (
-    <div className="flex flex-col bg-white h-screen-full">
+    <div className="flex flex-col bg-white h-screen">
       <div
-        className={`bg-[url('assets/img/004.jpg')] bg-cover bg-no-repeat flex flex-col relative`}
+        className={`bg-[url('../assets/img/004.jpg')] bg-cover bg-no-repeat flex flex-col relative`}
         style={{ height }}
       >
         <div className="flex flex-col mix-blend-color-burn">

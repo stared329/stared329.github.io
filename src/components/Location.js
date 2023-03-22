@@ -1,4 +1,4 @@
-import useScrollFadeIn from './hooks';
+import useScrollFadeIn from '../util/hooks';
 import KakaoMap from './KakaoMap';
 const Sparkles = () => (
   <svg
@@ -36,7 +36,7 @@ const Location = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen-full justify-center overflow-y-auto bg-back text-white font-light text-sm">
+    <div className="flex flex-col min-h-screen justify-center overflow-y-auto bg-back text-white font-light text-sm">
       <KakaoMap />
       <a
         href="https://m.map.kakao.com/actions/searchView?q=%EC%84%9C%EC%9A%B8+%EA%B5%AC%EB%A1%9C%EA%B5%AC+%EC%83%88%EB%A7%90%EB%A1%9C+97&wxEnc=LVSOTP&wyEnc=QNLTTMN&lvl=4#!/all/map/place"

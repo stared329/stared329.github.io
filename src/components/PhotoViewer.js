@@ -43,7 +43,7 @@ export default function PhotoViewer({ open, index, onClose }) {
           open ? 'block' : 'hidden'
         }`}
       >
-        <div className="fixed inset-0 w-full h-screen-full bg-white opacity-70"></div>
+        <div className="fixed inset-0 w-full h-screen bg-white opacity-70"></div>
         <div className="flex items-center min-h-full z-15 relative">
           <div className="carousel w-full">
             {list.map((c, i) => (
@@ -93,7 +93,7 @@ export default function PhotoViewer({ open, index, onClose }) {
           </button>
           {current > 0 && (
             <div
-              className="absolute left-0 w-1/2 h-screen-full bg-transparent flex items-center"
+              className="absolute left-0 w-1/2 h-screen bg-transparent flex items-center"
               onClick={handleNextPrev(false)}
             >
               <svg
@@ -114,7 +114,7 @@ export default function PhotoViewer({ open, index, onClose }) {
           )}
           {current < list.length - 1 && (
             <div
-              className="absolute right-0 w-1/2 h-screen-full bg-transparent flex items-center justify-end"
+              className="absolute right-0 w-1/2 h-screen bg-transparent flex items-center justify-end"
               onClick={handleNextPrev(true)}
             >
               <svg

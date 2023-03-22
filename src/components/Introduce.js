@@ -1,6 +1,6 @@
-import Line from './assets/img/line_01.svg';
-import info from './assets/info.json';
-import useScrollFadeIn from './hooks';
+import Line from '../assets/img/line_01.svg';
+import info from '../assets/info.json';
+import useScrollFadeIn from '../util/hooks';
 
 const Introduce = ({ father, mother, child }) => {
   const handleAccount =
@@ -22,7 +22,7 @@ ${b} ${a}
     6: useScrollFadeIn('up', 0.8, 0.8),
   };
   return (
-    <div className="flex flex-col bg-white h-screen-full justify-evenly">
+    <div className="flex flex-col bg-white h-screen justify-evenly">
       <div className="bg-white flex flex-col gap-10 py-8 my-auto">
         <div className="flex flex-col gap-2 justify-center mt-10 mb-4">
           <img
@@ -92,7 +92,7 @@ ${b} ${a}
       </div>
       <div
         className="bg-[url('https://environment.ec.europa.eu/sites/default/files/styles/oe_theme_ratio_3_2_medium/public/2021-07/banner_v1_1.png?itok=_VO4aRIL')]"
-        {...useScrollFadeIn('fade', 1, 1)}
+        {...useScrollFadeIn('fade', 1, 0)}
       >
         <div className="flex flex-col py-6 px-10 gap-4 bg-[rgba(84,142,100,0.9)] justify-between text-white">
           <div

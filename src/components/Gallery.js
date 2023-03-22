@@ -1,5 +1,4 @@
 import { PhotoAlbum } from 'react-photo-album';
-import useScrollFadeIn from './hooks';
 import photos from './Photo';
 
 const Gallery = ({ setPhoto }) => {
@@ -12,7 +11,7 @@ const Gallery = ({ setPhoto }) => {
     });
   };
   return (
-    <div className="flex flex-col bg-[#FFFFFF00] justify-center px-8 h-screen-full">
+    <div className="flex flex-col bg-[#FFFFFF00] justify-center px-8 py-32 min-h-screen">
       <PhotoAlbum
         layout="rows"
         photos={photos}

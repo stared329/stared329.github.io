@@ -11,12 +11,12 @@ const scrollbarHide = plugin(function ({ addUtilities }) {
         display: 'none',
       },
     },
-    '.h-screen-full': {
+    '.h-screen': {
       height: '-webkit-fill-available',
       height: 'stretch',
       height: '100vh',
     },
-    '.min-h-screen-full': {
+    '.min-h-screen': {
       'min-height': '-webkit-fill-available',
       'min-height': 'stretch',
       'min-height': '100vh',
